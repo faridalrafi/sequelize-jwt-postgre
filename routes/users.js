@@ -22,6 +22,10 @@ function isAuthenticated (req, res, next) {
 
 /* GET users listing. */
 
+router.get('/', function (req, res) {
+  models.User.findAll({}).then(function (users) { res.send(users) })
+})
+
 router.post('/create', function (req, res) {
   models.User.create({ name: req.body.name, username: req.body.username, email: req.body.email, password: req.body.password }).then(function () {
     res.send('Success')
