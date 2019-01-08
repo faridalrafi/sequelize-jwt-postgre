@@ -69,7 +69,9 @@ router.post('/signin', function (req, res) {
 
 // #routes:20 router kusus buat yang sudah login atau sudah punya token
 router.get('/private', isAuthenticated, function (req, res, next) {
-  res.json({ message: 'halaman harus menggunakan token' });
+  token = req.headers.authorization;
+  
+  res.json({ message: req.decoded });
 });
 // #routes:30 router yang bersifat public atau bisa di akses semua orang
 router.get('/public', function (req, res, next) {
